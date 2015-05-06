@@ -2,7 +2,7 @@ CFLAGS = -std=gnu99 -fPIC -I../lib `python-config --includes` -Wall -Wextra -O2
 ifdef DEBUG
 CFLAGS += -DPYAUTH_DEBUG -O0 -ggdb3
 endif
-LIBS = `python-config --libs`
+LIBS = -lmosquitto `python-config --libs`
 DESTDIR = /usr
 
 all : auth_plugin_pyauth.so
