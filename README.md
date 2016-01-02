@@ -18,9 +18,23 @@ mosquitto source directory. Then:
     cd mosquitto_pyauth
     make
 
+Alternatively you can pass full path to mosquitto sources using
+`MOSQUITTO_SRC` variable:
+
+    make MOSQUITTO_SRC=/path/to/mosquitto-src
+
 If all goes ok, there should be `auth_plugin_pyauth.so` file in the
 current directory. Copy it under path accessible for mosquitto daemon,
 e.g.: `/usr/local/lib/mosquitto/`.
+
+### Troubleshooting
+
+If you get errors while compiling the plugin about `-lmosquitto` then you have a missing link to libmosquitto.
+Just check the file `/usr/lib/libmosquitto.so` or `/usr/lib/mosquitto.so.1` exists and create a symlink:
+
+    ln -s /usr/lib/libmosquitto.so.1 /usr/lib/libmosquitto.so
+
+And make again the plugin. This time should work.
 
 Running
 =======
